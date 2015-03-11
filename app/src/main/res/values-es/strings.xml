@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Chess Engines</string>
+    <string name="app_name_about">Chess Engines - Descripción</string>
+    <string name="app_name_uci">Chess Engines - UCI Opciones</string>
+    <string name="app_name_engines">Chess Engines - Lista de máquinas</string>
+    <string name="app_name_connecting">Chess Engines - Conexión ...</string>
+    <string name="preferencesTitle">Preferencias</string>
+   
+    <string name="sendEmail">Enviar E-mail</string>
+    
+    <string name="about">
+    	\"Chess Engines\" La interfaz de \"Universal Chess Interface\" (UCI) el protocolo y los usos compilados máquinas.
+    	\n\nUtilice la \"Opciones clave\" para hacer ajustes personalizados.
+    	\n\nPara jugar contra la máquina puede que necesite una interfaz gráfica de usuario.
+		\n\nPor favor, descargue la aplicación \"Chess for All\" desde el \"Google Play Store\" o golpear el \"GUI\" clave.  
+    </string>
+    
+    <string name="menu_about">Acerca del programa</string>
+    <string name="menu_about_text">Copia compilado motores en el dispositivo. 
+    \n\nInstalar e importar un motor. 
+    \n\nPara la reproducción de utilizar la aplicación \"Chess for All\".  
+	</string>
+	<string name="menu_developer">Promotor</string>
+	<string name="menu_developer_text">
+	    Traducciones:
+		\nFrancés - Éric Gallula
+		\nEspañol - Sergio Revinelli
+	    \nRuso - Ark (hark, arkpc)
+		\n\nDiseño de gráficos de Lars Streblow
+	    \n\n\"Chess Engines\" es desarrollado por Karl Schreiner  
+	    \n(Licencia: GNU GPLv3).
+	</string>
+	<string name="menu_homepage">Página principal</string>
+    <string name="menu_sourceCode">Source code</string>
+	<string name="menu_contact">Contacto</string>
+	<string name="menu_contact_text">c4akarl@gmail.com
+	\n\nhttp://c4akarl.blogspot.com</string>
+	
+	<string name="menu_engine">Configuración del motor</string>
+	<string name="menu_engineInstall">Instalar el motor de SD</string>
+	<string name="menu_engineUninstall">Desinstalar Motores</string>
+	<string name="menu_engineSelect">Importación del motor</string>
+	<string name="menu_Options">Opciones</string>
+    
+    <string name="service_name">ChessEnginesService</string>
+    <string name="engineNotFound">Motor no se encuentra:\n</string>
+    <string name="engineAlreadyRunning">Motor ya está en ejecución, \nProceso:</string>
+    <string name="engineCurrent">MOTOR IMPORTADOS:</string>
+    <string name="engineList">MOTORES INSTALADOS:</string>
+    <string name="engineReadingUciOptions"> . . . Opciones de lectura UCI . . .</string>
+    
+    <string name="prefTitleLogOn">Registro de los registros</string>
+    <string name="prefPlayingStrength">la fuerza de juego</string>
+</resources>

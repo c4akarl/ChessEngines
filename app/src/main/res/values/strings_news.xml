@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="whatsNew">What\'s new</string>
+	<string name="whatsNew_text">
+	    <![CDATA[
+	    *** v1.8 ***
+	    \nSource code released on GitHub.
+	    \nIDE: Conversion of Eclipse on Android Studio.
+	    \n\n*** v1.7 ***
+	    \nSource code is available from my homepage.
+	    \n\n*** v1.6 ***
+	    \nTranslations:
+	    \nSpanish - Sergio Revinelli
+	    \nRussian - Ark (hark, arkpc)
+	    \n\n*** v1.5 ***
+	    \nTroubleshooting: engine access error with multiple user accounts on tablets with Android 4.2.
+	    \n\nAdded: Option settings for playing strength (is not supported on all engines).
+	    \n\nNew graphics design by Lars Streblow.
+	    \n\n*** v1.4 ***
+	    \nTroubleshooting: uninstall engines
+	    ]]>
+ 	</string>    
+</resources>

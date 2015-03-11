@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Chess Engines</string>
+    <string name="app_name_about">Chess Engines - About</string>
+    <string name="app_name_uci">Chess Engines - UCI Options</string>
+    <string name="app_name_engines">Chess Engines - Engine List</string>
+    <string name="app_name_connecting">Chess Engines - connecting to engine ...</string>
+    <string name="preferencesTitle">Preferences</string>
+   
+    <string name="sendEmail">Send email</string>
+    
+    <string name="about">
+    	\"Chess Engines\" supports the \"Universal Chess Interface\" (UCI) protocol and are using compiled engines.
+    	\n\nUse the \"Settings Button\" for customizing engines.
+    	\n\nYou need a graphical user interface for playing against this engines. 
+		\n\nPlease download the application \"Chess for All\" from the \"Google Play Store\" or press the \"GUI\" button.  
+    </string>
+    
+    <string name="menu_about">About</string>
+    <string name="menu_about_text">Copy compiled engines to your device. 
+    \n\nInstall and import an engine. 
+    \n\nFor playing use the application \"Chess for All\".  
+	</string>
+	<string name="menu_developer">Developer</string>
+	<string name="menu_developer_text">
+	    Translations:
+		\nFrench - Éric Gallula
+		\nSpanish - Sergio Revinelli
+		\nRussian - Ark (hark, arkpc)
+		\n\nGraphics design by Lars Streblow
+	    \n\n\"Chess Engines\" is developed by Karl Schreiner 
+	    \n(License: GNU GPLv3).
+	</string>
+	<string name="menu_homepage">Homepage</string>
+    <string name="menu_sourceCode">Source code</string>
+	<string name="menu_contact">Contact</string>
+	<string name="menu_contact_text">c4akarl@gmail.com
+	\n\nhttp://c4akarl.blogspot.com</string>
+	
+	<string name="menu_engine">Engine Settings</string>
+	<string name="menu_engineInstall">Install Engine from SD</string>
+	<string name="menu_engineUninstall">Uninstall Engines</string>
+	<string name="menu_engineSelect">Import Engine</string>
+	<string name="menu_Options">Options</string>
+    
+    <string name="service_name">ChessEnginesService</string>
+    <string name="engineNotFound">Engine not found:\n</string>
+    <string name="engineAlreadyRunning">Engine already running,\nProcess:</string>
+    <string name="engineCurrent">IMPORTED ENGINE:</string>
+    <string name="engineList">INSTALLED ENGINES:</string>
+    <string name="engineReadingUciOptions"> . . . reading UCI-Options . . .</string>
+    
+    <string name="prefTitleLogOn">Log Generating</string>
+    <string name="prefPlayingStrength">playing strength</string>
+</resources>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="whatsNew">Was gibt es Neues</string>
+	<string name="whatsNew_text">
+	    <![CDATA[
+	    *** v1.8 ***
+	    \nSource-Code auf GitHub veröffentlicht.
+	    \nIDE: Umstellung von Eclipse auf Android Studio.
+	    \n\n*** v1.7 ***
+	    \nQuellcode verfügbar auf meiner Homepage.
+	    \n\n*** v1.6 ***
+	    \nÜbersetzungen:
+	    \nSpanisch - Sergio Revinelli
+	    \nRussisch - Ark (hark, arkpc)
+	    \n\n*** v1.5 ***
+	    \nFehlerbeseitigung: Maschinen-Zugriffsfehler bei mehreren User-Accounts bei Tablets mit Android 4.2.
+	    \n\nHinzugefügt: Option Einstellungen für Spielstärke (wird nicht von allen Engines unterstützt).
+	    \n\nNeues Grafik-Design von Lars Streblow.
+	    \n\n*** v1.4 ***
+	    \nFehlerbehebung: Deinstallation Maschinen
+	    ]]>
+ 	</string>    
+</resources>

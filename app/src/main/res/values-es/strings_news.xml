@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="whatsNew">¿Qué hay de nuevo</string>
+	<string name="whatsNew_text">
+	    <![CDATA[
+	    *** v1.8 ***
+	    \nEl Código fuente publicado en GitHub.
+	    \nIDE: Conversión de Eclipse en Android Studio.
+	    \n\n*** v1.7 ***
+	    \nEl código fuente esta disponible en mi página web.
+	    \n\n*** v1.6 ***
+	    \nTraducciones:
+	    \nEspañol - Sergio Revinelli
+	    \nRuso - Ark (hark, arkpc)
+	    \n\n*** v1.5 ***
+	    \nSolución de problemas: Error de acceso a la máquina con múltiples cuentas de usuario en tablets con Android 4.2.
+	    \n\nAñadido: Configuración de opciones para la reproducción de la fuerza (no se admite en todos los sistemas).
+	    \n\nNuevo diseño gráfico de Lars Streblow.
+	    \n\n*** v1.4 ***
+	    \nSolución de problemas: Motores de desinstalación
+	    ]]>
+ 	</string>    
+</resources>
