@@ -23,12 +23,9 @@
 	</string>
 	<string name="menu_developer">Revelador</string>
 	<string name="menu_developer_text">
-	    Traduções:
-		\nFrancês - Éric Gallula
-		\nEspanhol - Sergio Revinelli
-	    \nRusso - Ark (hark, arkpc)
-		\n\nDesign gráfico por Lars Streblow
-	    \n\n\"Chess Engines\" é desenvolvido por Karl Schreiner 
+		Motor padrão \"deuterium v14.3\" é desenvolvido por Ferdinand Mosca.
+		\n\nDesign gráfico por Lars Streblow.
+	    \n\n\"Chess Engines\" é desenvolvido por Karl Schreiner.
 	    \n(Licença: GNU GPLv3).
 	</string>
 	<string name="menu_homepage">Homepage</string>

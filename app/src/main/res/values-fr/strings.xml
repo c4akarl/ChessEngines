@@ -23,12 +23,9 @@
 	</string>
 	<string name="menu_developer">Développeur</string>
 	<string name="menu_developer_text">
-	    Traductions:
-		\nFrançais - Éric Gallula
-		\nEspagnole - Sergio Revinelli
-	    \nRussie - Ark (hark, arkpc)
-		\n\nConception graphique par Lars Streblow
-	    \n\n\"Chess Engines\" est développé par Karl Schreiner 
+		Moteur par défaut deuterium de Ferdinand Mosca
+		\n\nConception graphique par Lars Streblow.
+	    \n\n\"Chess Engines\" est développé par Karl Schreiner.
 	    \n(Licence: GNU GPLv3)
 	</string>
 	<string name="menu_homepage">Homepage</string>

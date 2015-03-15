@@ -23,12 +23,9 @@
 	</string>
 	<string name="menu_developer">Promotor</string>
 	<string name="menu_developer_text">
-	    Traducciones:
-		\nFrancés - Éric Gallula
-		\nEspañol - Sergio Revinelli
-	    \nRuso - Ark (hark, arkpc)
-		\n\nDiseño de gráficos de Lars Streblow
-	    \n\n\"Chess Engines\" es desarrollado por Karl Schreiner  
+		Motor predeterminado \"deuterium v14.3\" es desarrollado por Ferdinand Mosca.
+		\n\nDiseño de gráficos de Lars Streblow.
+	    \n\n\"Chess Engines\" es desarrollado por Karl Schreiner.
 	    \n(Licencia: GNU GPLv3).
 	</string>
 	<string name="menu_homepage">Página principal</string>

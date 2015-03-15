@@ -3,7 +3,10 @@
 	<string name="whatsNew">What\'s new</string>
 	<string name="whatsNew_text">
 	    <![CDATA[
-	    *** v1.8 ***
+	    *** v1.9 ***
+	    \nNew engine, deuterium v14.3, added.
+	    \nElimination of Android 5.0 (Lollipop) error.
+	    \n\n*** v1.8 ***
 	    \nSource code released on GitHub.
 	    \nIDE: Conversion of Eclipse on Android Studio.
 	    \n\n*** v1.7 ***

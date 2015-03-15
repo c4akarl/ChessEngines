@@ -13,7 +13,7 @@ import java.io.OutputStreamWriter;
 import java.util.Arrays;
 import java.util.Comparator;
 import android.os.Environment;
-//import android.util.Log;
+import android.util.Log;
 
 public class EngineFileManager 
 {	// install/uninstall engines from SD-Card; managing engines on package file system: /data/data/ccc.chess.engines/engines : !!! dataEnginesPath
@@ -64,16 +64,11 @@ public class EngineFileManager
     }
 	public boolean writeEngineToData(String filePath, String fileName, InputStream is) 
 	{ // if no engine exists in >/data/data/ccc.chess.engines/engines< install default engine! !!! dataEnginesPath
-		File file = new File(dataEnginesPath);
+        File file = new File(dataEnginesPath);
 		if (!file.exists())
 		{
-//			Log.i(TAG, DATA_ENGINES_PATH + " not exists");
 			if (!file.mkdir())
 				return false;
-			else
-			{
-//				Log.i(TAG, DATA_ENGINES_PATH + " created");
-			}
 		}
 		boolean engineUpdated = false;
 		File f = new File(dataEnginesPath, fileName);
@@ -87,7 +82,7 @@ public class EngineFileManager
 				{
 					process.waitFor();
 					engineUpdated = true;
-				} 
+				}
 				catch (InterruptedException e) 
 				{
 					deleteFileFromData(fileName);
@@ -102,8 +97,7 @@ public class EngineFileManager
 		} 
 		else
 		{
-//			Log.i(TAG, "Engine is missing from data. Intializing...");
-			try 
+			try
 			{
 				InputStream istream = null;
 				if (is != null)
@@ -115,7 +109,8 @@ public class EngineFileManager
 					f = new File(filePath, fileName);
 					istream = new FileInputStream(f);
 				}
-				FileOutputStream fout = new FileOutputStream(dataEnginesPath + "/" + fileName);
+//				FileOutputStream fout = new FileOutputStream(dataEnginesPath + "/" + fileName);
+                FileOutputStream fout = new FileOutputStream(dataEnginesPath + fileName);
 				byte[] b = new byte[1024];
 				int noOfBytes = 0;
 				while ((noOfBytes = istream.read(b)) != -1) 
@@ -124,10 +119,10 @@ public class EngineFileManager
 				}
 				istream.close();
 				fout.close();
-//				Log.i(TAG, fileName + " copied to " + DATA_ENGINES_PATH);
-				try 
+				try
 				{
-					String cmd[] = { "chmod", "744", dataEnginesPath + "/" + fileName };
+//					String cmd[] = { "chmod", "744", dataEnginesPath + "/" + fileName };
+                    String cmd[] = { "chmod", "744", dataEnginesPath + fileName };
 					Process process = Runtime.getRuntime().exec(cmd);
 					try 
 					{
@@ -253,7 +248,7 @@ public class EngineFileManager
 		  }
 	}
 	
-	final String TAG = "EngineFileManager";
+//	final String TAG = "EngineFileManager";
 	String dataEnginesPath = "";
 	String currentFilePath = "";
 	private BufferedReader reader = null;

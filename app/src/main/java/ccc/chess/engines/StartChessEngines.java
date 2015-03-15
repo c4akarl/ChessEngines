@@ -21,6 +21,7 @@ import android.content.DialogInterface.OnClickListener;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.RemoteException;
@@ -134,8 +135,8 @@ public class StartChessEngines extends Activity implements OnTouchListener
                 return true;
             case R.id.menu_contact:
 	        	Intent send = new Intent(Intent.ACTION_SENDTO, Uri.fromParts("mailto", APP_EMAIL, null)); 
-	        	send.putExtra(android.content.Intent.EXTRA_SUBJECT, ""); 
-	        	send.putExtra(android.content.Intent.EXTRA_TEXT, ""); 
+	        	send.putExtra(Intent.EXTRA_SUBJECT, "");
+	        	send.putExtra(Intent.EXTRA_TEXT, "");
 	        	startActivity(Intent.createChooser(send, getString(R.string.sendEmail)));
 	            return true;
         }
@@ -219,7 +220,7 @@ public class StartChessEngines extends Activity implements OnTouchListener
 		    	  }
 				AlertDialog.Builder builder = new AlertDialog.Builder(this);
 				builder.setTitle(engineSearchPath);
-				builder.setItems(items, new DialogInterface.OnClickListener() 
+				builder.setItems(items, new OnClickListener()
 				{
 				    public void onClick(DialogInterface dialog, int item) 
 				    {
@@ -269,7 +270,7 @@ public class StartChessEngines extends Activity implements OnTouchListener
 		    	  }
 				AlertDialog.Builder builder = new AlertDialog.Builder(this);
 				builder.setTitle(menuData);
-				builder.setSingleChoiceItems(items, selectedItem, new DialogInterface.OnClickListener() 
+				builder.setSingleChoiceItems(items, selectedItem, new OnClickListener()
 				{
 				    public void onClick(DialogInterface dialog, int item) 
 				    {
@@ -306,7 +307,7 @@ public class StartChessEngines extends Activity implements OnTouchListener
 				}
 				AlertDialog.Builder builder = new AlertDialog.Builder(this);
 				builder.setTitle(menuData);
-				builder.setItems(items, new DialogInterface.OnClickListener() 
+				builder.setItems(items, new OnClickListener()
 				{
 				    public void onClick(DialogInterface dialog, int item) 
 				    {
@@ -442,7 +443,8 @@ public class StartChessEngines extends Activity implements OnTouchListener
     //	HELPERS		HELPERS		HELPERS		HELPERS		HELPERS		HELPERS		HELPERS		HELPERS
     public void getPreferences() 
 	{
-    	engineSearchPath = filePrefs.getString("engineSearchPath", efm.getExternalDirectory());
+//    	engineSearchPath = filePrefs.getString("engineSearchPath", efm.getExternalDirectory());
+    	engineSearchPath = filePrefs.getString("engineSearchPath", Environment.getExternalStorageDirectory().getAbsolutePath());
     	aboutCounter = filePrefs.getInt("aboutCounter", 1);
 	}
     public void setPreferences() 
@@ -624,7 +626,7 @@ public class StartChessEngines extends Activity implements OnTouchListener
     	try {Thread.sleep(150);} 
 		catch (InterruptedException e) {}
 		engineProcess = getInfoFromEngineService("ENGINE_PROCESS " + newEngine);
-		Log.i(TAG, "changeEngine, engineProcess: " + engineProcess);
+//		Log.i(TAG, "changeEngine, engineProcess: " + engineProcess);
     	startEngine();
     }
     private void readUCIOptions() 
@@ -748,7 +750,7 @@ public class StartChessEngines extends Activity implements OnTouchListener
 		return info;
 	}
 	
-	final String TAG = "StartChessEngine";
+//	final String TAG = "StartChessEngine";
 	private static final String ENGINE_INTERFACE = "ccc.chess.engines.IChessEngineService";	//>111
 	private static final String GUI_C4A = "ccc.chess.gui.chessforall";
 	private static final String GUI_PROCESS_NAME = "START_CHESS_ENGINES";					//>112

@@ -3,7 +3,10 @@
 	<string name="whatsNew">Was gibt es Neues</string>
 	<string name="whatsNew_text">
 	    <![CDATA[
-	    *** v1.8 ***
+	    *** v1.9 ***
+	    \nNeue Maschine, deuterium v14.3, hinzugefügt.
+	    \nBeseitigung der Android 5.0(Lollipop) Fehler.
+	    \n\n*** v1.8 ***
 	    \nSource-Code auf GitHub veröffentlicht.
 	    \nIDE: Umstellung von Eclipse auf Android Studio.
 	    \n\n*** v1.7 ***

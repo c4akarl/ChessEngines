@@ -23,10 +23,7 @@
 	</string>
 	<string name="menu_developer">Developer</string>
 	<string name="menu_developer_text">
-	    Translations:
-		\nFrench - Éric Gallula
-		\nSpanish - Sergio Revinelli
-		\nRussian - Ark (hark, arkpc)
+	    Default engine \"deuterium v14.3\" is developed by Ferdinand Mosca
 		\n\nGraphics design by Lars Streblow
 	    \n\n\"Chess Engines\" is developed by Karl Schreiner 
 	    \n(License: GNU GPLv3).

@@ -3,7 +3,10 @@
 	<string name="whatsNew">¿Qué hay de nuevo</string>
 	<string name="whatsNew_text">
 	    <![CDATA[
-	    *** v1.8 ***
+	    *** v1.9 ***
+	    \nNuevo motor, v14.3 deuterio, añadió.
+	    \nEliminación de Android 5.0 (Lollipop) error.
+	    \n\n*** v1.8 ***
 	    \nEl Código fuente publicado en GitHub.
 	    \nIDE: Conversión de Eclipse en Android Studio.
 	    \n\n*** v1.7 ***

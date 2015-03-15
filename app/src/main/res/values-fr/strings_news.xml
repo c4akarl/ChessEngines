@@ -3,7 +3,10 @@
 	<string name="whatsNew">Quoi de neuf</string>
 	<string name="whatsNew_text">
 	    <![CDATA[
-	    *** v1.8 ***
+	    *** v1.9 ***
+	    \nNouveau rajout du  moteur deuterium 14.3.
+	    \nElimination de l\'erreur sous Lollipop.
+	    \n\n*** v1.8 ***
 	    \nCode source disponible sur GitHub.
 	    \nConversion Eclipse effectuée sous Android Studio IDE.
 	    \n\n*** v1.7 ***

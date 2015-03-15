@@ -2,7 +2,10 @@
 <resources>
   <string name="whatsNew">Что нового?</string>
   <string name="whatsNew_text"><![CDATA[
-	    *** v1.8 ***
+	    *** v1.9 ***
+	    \nДобавлен новый движок старше версии 14.3.
+	    \nЛиквидация Android 5.0 (Lollipop) ошибки.
+	    \n\n*** v1.8 ***
 	    \nИсходные тексты программы написаны на GitHub.
 	    \nIDE: Преобразование из Eclipse в Android Studio.
 	    \n\n*** v1.7 ***

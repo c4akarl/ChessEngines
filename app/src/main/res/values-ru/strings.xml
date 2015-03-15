@@ -20,10 +20,7 @@
 	</string>
   <string name="menu_developer">Разработчик</string>
   <string name="menu_developer_text">
-	    Переводы:
-		\nФранцузская - Éric Gallula
-		\nиспанский - Sergio Revinelli
-	    \nрусский - Ark (hark, arkpc)
+        Движок по-умолчанию версии 14.3 разработан Фердинандом Моска (Ferdinand Mosca).
 		\n\nГрафический дизайн Lars Streblow
 	    \n\n\"Chess Engines\" в настоящее время разрабатывается Karl Schreiner 
 	    \n(Лицензия: GNU GPLv3).

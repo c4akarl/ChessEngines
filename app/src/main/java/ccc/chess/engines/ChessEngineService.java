@@ -61,11 +61,11 @@ public class ChessEngineService extends Service
 		enginePrefs = getSharedPreferences("engine", 0);		//	engine Preferences
 		isLogOn = enginePrefs.getBoolean("logOn", false);
 		engineProcess = enginePrefs.getString("engineProcess", engineProcess);
-		if (!efm.dataFileExist(engineProcess) | engineProcess.equals(""))
+		if (!efm.dataFileExist(engineProcess) | engineProcess.equals("")
+				| engineProcess.equals("robbolito0085e4l") & !ASSETS_ENGINE_PROCESS.equals("robbolito0085e4l"))
 		{
 			writeDefaultEngineToData();
 		}
-//		Log.i(TAG, "getPrefs, engineProcess: " + engineProcess);
 //		isLogOn = true; // for test only
     }
 	private void setPrefs() 
@@ -98,15 +98,18 @@ public class ChessEngineService extends Service
 	}
 	private void writeDefaultEngineToData() 
     {
-		try 
+		try
 		{
 			InputStream istream = getAssets().open(ASSETS_ENGINE_PROCESS);
 			if (efm.writeEngineToData("", ASSETS_ENGINE_PROCESS, istream))
 				engineProcess = ASSETS_ENGINE_PROCESS;
 			else
 				engineProcess = "";
-		} 
-		catch (IOException e) {e.printStackTrace();	engineProcess = "";}
+		}
+		catch (IOException e)
+        {
+            e.printStackTrace();	engineProcess = "";
+        }
     }
 	void setUciEloValues(String message)
 	{
@@ -354,7 +357,12 @@ public class ChessEngineService extends Service
 	String engineName = "";				// the uci engine name
 	String engineProcess = "";			// the compiled engine process name (file name)
 
-	final String ASSETS_ENGINE_PROCESS = "robbolito0085e4l";
+//	final String ASSETS_ENGINE_PROCESS = "robbolito0085e4l";
+//	final String ASSETS_ENGINE_PROCESS = "Sugar_050415_JA";
+//	final String ASSETS_ENGINE_PROCESS = "stockfish-6-ja";
+//	final String ASSETS_ENGINE_PROCESS = "bikjump1_8";
+//	final String ASSETS_ENGINE_PROCESS = "deuterium-v14_3";
+	final String ASSETS_ENGINE_PROCESS = "Deuterium-v14_3_34_130";
 	String dataEnginesPath = "";
 	
 	private boolean processAlive = false;
