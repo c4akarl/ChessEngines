@@ -3,7 +3,9 @@
 	<string name="whatsNew">Quoi de neuf</string>
 	<string name="whatsNew_text">
 	    <![CDATA[
-	    *** v1.9 ***
+	    *** v1.10 ***
+	    \nLe moteur par défaut a changé, Robbolito ou Stockfish 6 (sous Android OS 5.0)
+	    \n\n*** v1.9 ***
 	    \nNouveau rajout du  moteur deuterium 14.3.
 	    \nElimination de l\'erreur sous Lollipop.
 	    \n\n*** v1.8 ***

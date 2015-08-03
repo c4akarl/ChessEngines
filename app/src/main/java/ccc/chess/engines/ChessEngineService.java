@@ -58,11 +58,16 @@ public class ChessEngineService extends Service
 	public String getCurrentCallPid()	{return currentCallPid;}	//>157 the current running Gui process on ChessEngineService
 	private void getPrefs() 
     {	// get user preferences
+        assetsEngineProcess = ASSETS_ENGINE_PROCESS_1;
+        int osVersion = Integer.valueOf(android.os.Build.VERSION.SDK);
+        if (osVersion > 20)
+            assetsEngineProcess = ASSETS_ENGINE_PROCESS_2;
 		enginePrefs = getSharedPreferences("engine", 0);		//	engine Preferences
 		isLogOn = enginePrefs.getBoolean("logOn", false);
+        if (isLogOn)
+            Log.i(TAG, "osVersion: " + osVersion + ", assetsEngineProcess: " + assetsEngineProcess);
 		engineProcess = enginePrefs.getString("engineProcess", engineProcess);
-		if (!efm.dataFileExist(engineProcess) | engineProcess.equals("")
-				| engineProcess.equals("robbolito0085e4l") & !ASSETS_ENGINE_PROCESS.equals("robbolito0085e4l"))
+		if (!efm.dataFileExist(engineProcess) | !engineProcess.equals(assetsEngineProcess))
 		{
 			writeDefaultEngineToData();
 		}
@@ -100,9 +105,9 @@ public class ChessEngineService extends Service
     {
 		try
 		{
-			InputStream istream = getAssets().open(ASSETS_ENGINE_PROCESS);
-			if (efm.writeEngineToData("", ASSETS_ENGINE_PROCESS, istream))
-				engineProcess = ASSETS_ENGINE_PROCESS;
+			InputStream istream = getAssets().open(assetsEngineProcess);
+			if (efm.writeEngineToData("", assetsEngineProcess, istream))
+				engineProcess = assetsEngineProcess;
 			else
 				engineProcess = "";
 		}
@@ -312,8 +317,7 @@ public class ChessEngineService extends Service
 	{
 		ProcessBuilder builder = new ProcessBuilder(dataEnginesPath + fileName);
 		try 
-		{
-			process = builder.start();
+		{			process = builder.start();
 			OutputStream stdout = process.getOutputStream();
 			InputStream stdin = process.getInputStream();
 			reader = new BufferedReader(new InputStreamReader(stdin));
@@ -357,12 +361,15 @@ public class ChessEngineService extends Service
 	String engineName = "";				// the uci engine name
 	String engineProcess = "";			// the compiled engine process name (file name)
 
-//	final String ASSETS_ENGINE_PROCESS = "robbolito0085e4l";
+
 //	final String ASSETS_ENGINE_PROCESS = "Sugar_050415_JA";
 //	final String ASSETS_ENGINE_PROCESS = "stockfish-6-ja";
 //	final String ASSETS_ENGINE_PROCESS = "bikjump1_8";
 //	final String ASSETS_ENGINE_PROCESS = "deuterium-v14_3";
-	final String ASSETS_ENGINE_PROCESS = "Deuterium-v14_3_34_130";
+//	final String ASSETS_ENGINE_PROCESS = "Deuterium-v14_3_34_130";
+    final String ASSETS_ENGINE_PROCESS_1 = "robbolito0085e4l";
+    final String ASSETS_ENGINE_PROCESS_2 = "stockfish-6-ja";
+    String assetsEngineProcess = "";
 	String dataEnginesPath = "";
 	
 	private boolean processAlive = false;

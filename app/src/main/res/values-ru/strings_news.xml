@@ -2,7 +2,9 @@
 <resources>
   <string name="whatsNew">Что нового?</string>
   <string name="whatsNew_text"><![CDATA[
-	    *** v1.9 ***
+	    *** v1.10 ***
+	    \Движок по-умолчанию заменен на Robbolito or Stockfish 6(Android OS 5.0).
+	    \n\n*** v1.9 ***
 	    \nДобавлен новый движок старше версии 14.3.
 	    \nЛиквидация Android 5.0 (Lollipop) ошибки.
 	    \n\n*** v1.8 ***
