@@ -60,8 +60,11 @@ public class ChessEngineService extends Service
     {	// get user preferences
         assetsEngineProcess = ASSETS_ENGINE_PROCESS_1;
         int osVersion = Integer.valueOf(android.os.Build.VERSION.SDK);
-        if (osVersion > 20)
-            assetsEngineProcess = ASSETS_ENGINE_PROCESS_2;
+//        if (osVersion > 20)
+//            assetsEngineProcess = ASSETS_ENGINE_PROCESS_2;
+		if (android.os.Build.VERSION.SDK_INT >= 21)
+			assetsEngineProcess = ASSETS_ENGINE_PROCESS_2;
+
 		enginePrefs = getSharedPreferences("engine", 0);		//	engine Preferences
 		isLogOn = enginePrefs.getBoolean("logOn", false);
         if (isLogOn)
@@ -368,7 +371,9 @@ public class ChessEngineService extends Service
 //	final String ASSETS_ENGINE_PROCESS = "deuterium-v14_3";
 //	final String ASSETS_ENGINE_PROCESS = "Deuterium-v14_3_34_130";
     final String ASSETS_ENGINE_PROCESS_1 = "robbolito0085e4l";
-    final String ASSETS_ENGINE_PROCESS_2 = "stockfish-6-ja";
+//    final String ASSETS_ENGINE_PROCESS_2 = "stockfish-6-ja";
+//    final String ASSETS_ENGINE_PROCESS_2 = "stockfish_7_0";
+    final String ASSETS_ENGINE_PROCESS_2 = "stockfish-8-armeabi-v7a";
     String assetsEngineProcess = "";
 	String dataEnginesPath = "";
 	

@@ -10,8 +10,7 @@
     <string name="sendEmail">Envoyer un email</string>
     
     <string name="about">
-    	\"Chess Engines\" supporte \"Universal Chess Interface\" (UCI) du protocole et utilisez moteurs compilé.
-    	\n\nUtilisez le \"Bouton Settings\" pour la personnalisation des moteurs.
+    	Utilisez le \"Bouton Settings\" pour la personnalisation des moteurs.
     	\n\nVous avez besoin d\'une interface utilisateur graphique pour jouer contre cette moteurs. 
 		\n\nS\'il vous plaît télécharger l\'application \"Chess for All\" sur \"Google Play Store\" ou sur le \"GUI\" bouton.  
     </string>

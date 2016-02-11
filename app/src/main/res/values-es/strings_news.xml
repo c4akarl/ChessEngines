@@ -3,7 +3,9 @@
 	<string name="whatsNew">¿Qué hay de nuevo</string>
 	<string name="whatsNew_text">
 	    <![CDATA[
-	    *** v1.10 ***
+	    *** v1.11 ***
+	    \nActualizado a Android SDK versión 23.
+	    \n\n*** v1.10 ***
 	    \nMotor predeterminado cambió a Robbolito o Stockfish 6(sistema operativo Android 5.0).
 	    \n\n*** v1.9 ***
 	    \nNuevo motor, v14.3 deuterio, añadió.

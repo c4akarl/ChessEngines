@@ -40,7 +40,8 @@ public class EngineFileManager
 		{
 			File f = new File(path);;
 			sortedFiles = f.list();
-			Arrays.sort(sortedFiles, new AlphabeticComparator());
+			if (sortedFiles != null)
+				Arrays.sort(sortedFiles, new AlphabeticComparator());
 			currentFilePath = path;
 		}
 		catch (NullPointerException e) {e.printStackTrace();}

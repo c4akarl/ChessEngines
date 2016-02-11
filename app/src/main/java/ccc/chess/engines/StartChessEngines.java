@@ -380,6 +380,7 @@ public class StartChessEngines extends Activity implements OnTouchListener
 //	ENGINE-FILE(intall, uninstall, select)		ENGINE-FILE(intall, uninstall, select)	
     private void getEnginesFromSdcard(String path) 
 	{
+		Log.i(TAG, "path: " + path);
     	fileArray = efm.getFileArrayFromPath(path);
 // ERROR	v1.0	14.11.2011 02:24:11
     	if (fileArray != null)
@@ -402,6 +403,8 @@ public class StartChessEngines extends Activity implements OnTouchListener
 	    		c4aShowDialog(FILE_DIALOG);
 	    	}
     	}
+//		else
+//			c4aShowDialog(FILE_DIALOG);
 	}
     private void getEnginesFromData() 
 	{
@@ -444,7 +447,8 @@ public class StartChessEngines extends Activity implements OnTouchListener
     public void getPreferences() 
 	{
 //    	engineSearchPath = filePrefs.getString("engineSearchPath", efm.getExternalDirectory());
-    	engineSearchPath = filePrefs.getString("engineSearchPath", Environment.getExternalStorageDirectory().getAbsolutePath());
+//    	engineSearchPath = filePrefs.getString("engineSearchPath", Environment.getExternalStorageDirectory().getAbsolutePath());
+    	engineSearchPath = Environment.getExternalStorageDirectory().getAbsolutePath();
     	aboutCounter = filePrefs.getInt("aboutCounter", 1);
 	}
     public void setPreferences() 
@@ -580,7 +584,8 @@ public class StartChessEngines extends Activity implements OnTouchListener
     {	//>133 binds this activity to the service. 
     	engineServiceConnection = new EngineServiceConnection();
     	engineIntent = new Intent(ENGINE_INTERFACE);
-    	startService(engineIntent);		// starting once for visibility on device(running services)
+		engineIntent.setPackage("ccc.chess.engines");
+        startService(engineIntent);		// starting once for visibility on device(running services)
     	bindService(engineIntent, engineServiceConnection, Context.BIND_AUTO_CREATE);
     }
     private void startEngine() 
@@ -750,7 +755,7 @@ public class StartChessEngines extends Activity implements OnTouchListener
 		return info;
 	}
 	
-//	final String TAG = "StartChessEngine";
+	final String TAG = "StartChessEngine";
 	private static final String ENGINE_INTERFACE = "ccc.chess.engines.IChessEngineService";	//>111
 	private static final String GUI_C4A = "ccc.chess.gui.chessforall";
 	private static final String GUI_PROCESS_NAME = "START_CHESS_ENGINES";					//>112
@@ -802,6 +807,7 @@ public class StartChessEngines extends Activity implements OnTouchListener
 	ProgressDialog progressDialog = null;
 	
 	String engineSearchPath = "";
+//	String engineSearchPath = "/sdcard/chess_engines/";
 	String dataEnginesPath = "";
 	String[] fileArray;
 	ArrayList<String> fileList = new ArrayList<String>();	// file list(sd-card)

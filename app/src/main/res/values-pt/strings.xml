@@ -10,8 +10,7 @@
     <string name="sendEmail">Enviar e-mail</string>
     
     <string name="about">
-    	\"Chess Engines\" apoia a \"Universal Chess Interface\" de protocolo (UCI) e estão usando motores compilados.
-    	\n\nUsar o \"botão Settings\" para personalizar motores.
+    	Usar o \"botão Settings\" para personalizar motores.
     	\n\nVocê precisa de uma interface gráfica para jogar contra este motores.
 		\n\nFaça o download da aplicação \"Chess for All\" a partir do \"Google Play Store\" ou pressione a tecla \"GUI\" botão.  
     </string>

@@ -3,7 +3,9 @@
 	<string name="whatsNew">What\'s new</string>
 	<string name="whatsNew_text">
 	    <![CDATA[
-	    *** v1.10 ***
+	    *** v1.11 ***
+	    \nUpdated to Android SDK version 23
+	    \n\n*** v1.10 ***
 	    \nDefault engine changed to Robbolito or Stockfish 6(Android OS 5.0).
 	    \n\n*** v1.9 ***
 	    \nNew engine, deuterium v14.3, added.

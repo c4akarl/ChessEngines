@@ -23,8 +23,7 @@
 	</string>
 	<string name="menu_developer">Developer</string>
 	<string name="menu_developer_text">
-	    Default engine \"deuterium v14.3\" is developed by Ferdinand Mosca
-		\n\nGraphics design by Lars Streblow
+	    Graphics design by Lars Streblow
 	    \n\n\"Chess Engines\" is developed by Karl Schreiner 
 	    \n(License: GNU GPLv3).
 	</string>

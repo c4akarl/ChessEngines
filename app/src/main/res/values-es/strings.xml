@@ -23,8 +23,7 @@
 	</string>
 	<string name="menu_developer">Promotor</string>
 	<string name="menu_developer_text">
-		Motor predeterminado \"deuterium v14.3\" es desarrollado por Ferdinand Mosca.
-		\n\nDiseño de gráficos de Lars Streblow.
+		Diseño de gráficos de Lars Streblow.
 	    \n\n\"Chess Engines\" es desarrollado por Karl Schreiner.
 	    \n(Licencia: GNU GPLv3).
 	</string>

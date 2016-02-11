@@ -3,7 +3,9 @@
 	<string name="whatsNew">Was gibt es Neues</string>
 	<string name="whatsNew_text">
 	    <![CDATA[
-	    *** v1.10 ***
+	    *** v1.11 ***
+	    \nAktualisiert auf Android SDK Version 23.
+	    \n\n*** v1.10 ***
 	    \nStandard-Maschine geändert auf Robbolito oder Stockfisch 6(Android OS 5.0).
 	    \n\n*** v1.9 ***
 	    \nNeue Maschine, deuterium v14.3, hinzugefügt.

@@ -23,8 +23,7 @@
 	</string>
 	<string name="menu_developer">Entwickler</string>
 	<string name="menu_developer_text">
-	    Die Standard_Maschine \"deuterium v14.3\" wird von Ferdinand Mosca entwickelt.
-		\n\nGrafik-Design von Lars Streblow.
+	    Grafik-Design von Lars Streblow.
 	    \n\n\"Chess Engines\" wird von Karl Schreiner entwickelt.
 	    \n(License: GNU GPLv3).
 	</string>
