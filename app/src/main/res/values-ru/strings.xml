@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
   <string name="app_name">Chess Engines</string>
+    <string name="whatsNew">Что нового?</string>
   <string name="app_name_about">Chess Engines - О программе</string>
   <string name="app_name_uci">Chess Engines - настройка UCI (универсальный шахматный интерфейс)</string>
   <string name="app_name_engines">Chess Engines - Список движков</string>
@@ -42,4 +43,5 @@
   <string name="engineReadingUciOptions"> . . . чтение UCI-настроек . . .</string>
   <string name="prefTitleLogOn">Генерация лога</string>
   <string name="prefPlayingStrength">сила игры</string>
+    <string name="engineProcessNoFeedback">Нет обратной связи от процесса</string>
 </resources>

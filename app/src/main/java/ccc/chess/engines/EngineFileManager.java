@@ -16,13 +16,16 @@ import android.os.Environment;
 import android.util.Log;
 
 public class EngineFileManager 
-{	// install/uninstall engines from SD-Card; managing engines on package file system: /data/data/ccc.chess.engines/engines : !!! dataEnginesPath
-
+{
+	// install/uninstall engines from SD-Card; managing engines on package file system: /data/data/ccc.chess.engines/engines : !!! dataEnginesPath
 	//	FILE (SD-CARD)		FILE (SD-CARD)		FILE (SD-CARD)		FILE (SD-CARD)		FILE (SD-CARD)
-	public String getExternalDirectory()
+	public String getExternalDirectoryPath()
 	{
-		File f = Environment.getExternalStorageDirectory();
-		return f.toString();
+		String pathExternal = Environment.getExternalStorageDirectory().getAbsolutePath();
+//		String state = Environment.getExternalStorageState();
+//		if (!pathExternal.equals(""))
+//			Log.i(TAG, "pathExternal: " + pathExternal + ", state: " + state);
+		return pathExternal;
 	}
 	public String getParentFile(String path)
     {
@@ -35,10 +38,9 @@ public class EngineFileManager
 	public String[] getFileArrayFromPath(String path)
     {
 		String[] sortedFiles = null;
-// ERROR	v1.0	14.11.2011 02:24:11
 		try
 		{
-			File f = new File(path);;
+			File f = new File(path);
 			sortedFiles = f.list();
 			if (sortedFiles != null)
 				Arrays.sort(sortedFiles, new AlphabeticComparator());
@@ -63,8 +65,17 @@ public class EngineFileManager
 			Arrays.sort(sortedFiles, new AlphabeticComparator());
 		return sortedFiles;
     }
+	public int getCountFromData(String[] dataArray)
+	{
+		if (dataArray == null)
+			return 0;
+		else
+			return dataArray.length;
+	}
 	public boolean writeEngineToData(String filePath, String fileName, InputStream is) 
-	{ // if no engine exists in >/data/data/ccc.chess.engines/engines< install default engine! !!! dataEnginesPath
+	{
+		// if no engine exists in >/data/data/ccc.chess.engines/engines< install default engine! !!! dataEnginesPath
+//		Log.i(TAG, "dataEnginesPath: " + dataEnginesPath + ", filePath: " + filePath + ", fileName: " + fileName);
         File file = new File(dataEnginesPath);
 		if (!file.exists())
 		{
@@ -100,17 +111,14 @@ public class EngineFileManager
 		{
 			try
 			{
-				InputStream istream = null;
+				InputStream istream;
 				if (is != null)
-				{
 					istream = is;
-				}
 				else
 				{
 					f = new File(filePath, fileName);
 					istream = new FileInputStream(f);
 				}
-//				FileOutputStream fout = new FileOutputStream(dataEnginesPath + "/" + fileName);
                 FileOutputStream fout = new FileOutputStream(dataEnginesPath + fileName);
 				byte[] b = new byte[1024];
 				int noOfBytes = 0;
@@ -122,7 +130,6 @@ public class EngineFileManager
 				fout.close();
 				try
 				{
-//					String cmd[] = { "chmod", "744", dataEnginesPath + "/" + fileName };
                     String cmd[] = { "chmod", "744", dataEnginesPath + fileName };
 					Process process = Runtime.getRuntime().exec(cmd);
 					try 
@@ -160,29 +167,23 @@ public class EngineFileManager
 		boolean isProcess = false;
     	Process process;
     	ProcessBuilder builder = new ProcessBuilder(dataEnginesPath + "/" + file);
-//    	builder.redirectErrorStream (true);
-    	try 
+    	try
 		{
     		process = builder.start();
     		OutputStream stdout = process.getOutputStream();
 			InputStream stdin = process.getInputStream();
 			reader = new BufferedReader(new InputStreamReader(stdin));
 			writer = new BufferedWriter(new OutputStreamWriter(stdout));
-//			Log.i(TAG, file + "start process");
-		} 
+		}
 		catch (IOException e) 
 		{
-//			Log.i(TAG, file + " not an engine process");
 			return false;
 		}
-		try 
+		try
 		{
-//			Log.i(TAG, file + "write isready to process");
 			writeToProcess("isready" + "\n");
 		}
 		catch (IOException e) {e.printStackTrace();}
-//		try {Thread.sleep(150);} 
-//		catch (InterruptedException e) {}
 		String line = "";
 		int cnt = 0;
 		while (cnt < 100)
@@ -193,7 +194,7 @@ public class EngineFileManager
 //				Log.i(TAG, "cnt, line: " + cnt + ", " + line);
 				if (line != null)
 				{
-					if (line.equals("readyok") | line.endsWith("readyok"))
+					if (line.contains("ok"))
 					{
 						isProcess = true;
 						cnt = 100;
@@ -214,14 +215,12 @@ public class EngineFileManager
 		{
 			writer.write(data);
 			writer.flush();
+			writer.close();
 		}
 	}
 	private final String readFromProcess() throws IOException //>176 read a line of data from the process
-//	private final String readFromProcess(int timeoutMillis) throws IOException //>176 read a line of data from the process
 	{
 		String line = null;
-//		Log.i(TAG, "reader.ready(): " + reader.ready());
-//		if (reader != null && reader.ready())
 		if (reader != null)
 		{
 			line = reader.readLine();
@@ -249,7 +248,7 @@ public class EngineFileManager
 		  }
 	}
 	
-//	final String TAG = "EngineFileManager";
+	final String TAG = "EngineFileManager";
 	String dataEnginesPath = "";
 	String currentFilePath = "";
 	private BufferedReader reader = null;

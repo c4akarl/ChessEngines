@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Chess Engines</string>
+    <string name="whatsNew">Was gibt es Neues</string>
     <string name="app_name_about">Chess Engines - Beschreibung</string>
     <string name="app_name_uci">Chess Engines - UCI Optionen</string>
     <string name="app_name_engines">Chess Engines - Maschinenliste</string>
@@ -47,4 +48,5 @@
     <string name="engineReadingUciOptions"> . . . UCI-Optionen werden gelesen . . .</string>
     <string name="prefTitleLogOn">Protokollaufzeichnungen</string>
     <string name="prefPlayingStrength">Spielstärke</string>
+    <string name="engineProcessNoFeedback">Keine Rückmeldung vom Prozess</string>
 </resources>

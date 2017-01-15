@@ -60,21 +60,16 @@ public class ChessEngineService extends Service
     {	// get user preferences
         assetsEngineProcess = ASSETS_ENGINE_PROCESS_1;
         int osVersion = Integer.valueOf(android.os.Build.VERSION.SDK);
-//        if (osVersion > 20)
-//            assetsEngineProcess = ASSETS_ENGINE_PROCESS_2;
 		if (android.os.Build.VERSION.SDK_INT >= 21)
 			assetsEngineProcess = ASSETS_ENGINE_PROCESS_2;
-
+		int installedProcesses = efm.getCountFromData(efm.getFileArrayFromData());
 		enginePrefs = getSharedPreferences("engine", 0);		//	engine Preferences
 		isLogOn = enginePrefs.getBoolean("logOn", false);
-        if (isLogOn)
-            Log.i(TAG, "osVersion: " + osVersion + ", assetsEngineProcess: " + assetsEngineProcess);
 		engineProcess = enginePrefs.getString("engineProcess", engineProcess);
-		if (!efm.dataFileExist(engineProcess) | !engineProcess.equals(assetsEngineProcess))
-		{
+		if (isLogOn)
+			Log.i(TAG, "OS version: " + osVersion + ", process: " + engineProcess + ", installed pProcesses: " + installedProcesses);
+		if (!efm.dataFileExist(engineProcess) | installedProcesses <= 1)
 			writeDefaultEngineToData();
-		}
-//		isLogOn = true; // for test only
     }
 	private void setPrefs() 
     {	// update user preferences
@@ -148,8 +143,6 @@ public class ChessEngineService extends Service
 		int eloBase = uciEloMax - uciEloMin;
 		int skillStrength = uciEloMin + ((eloBase / 100) * enginePrefs.getInt("strength", 100));
 		int skillStrengthStockfish = (int) (0.2 * enginePrefs.getInt("strength", 100));
-//		int skillStrength = 0;
-		
 		String mesStrength =  "UCI_Elo: " + skillStrength + ", strength: " + enginePrefs.getInt("strength", 100) + "%";
 		try 
 		{
@@ -364,15 +357,7 @@ public class ChessEngineService extends Service
 	String engineName = "";				// the uci engine name
 	String engineProcess = "";			// the compiled engine process name (file name)
 
-
-//	final String ASSETS_ENGINE_PROCESS = "Sugar_050415_JA";
-//	final String ASSETS_ENGINE_PROCESS = "stockfish-6-ja";
-//	final String ASSETS_ENGINE_PROCESS = "bikjump1_8";
-//	final String ASSETS_ENGINE_PROCESS = "deuterium-v14_3";
-//	final String ASSETS_ENGINE_PROCESS = "Deuterium-v14_3_34_130";
     final String ASSETS_ENGINE_PROCESS_1 = "robbolito0085e4l";
-//    final String ASSETS_ENGINE_PROCESS_2 = "stockfish-6-ja";
-//    final String ASSETS_ENGINE_PROCESS_2 = "stockfish_7_0";
     final String ASSETS_ENGINE_PROCESS_2 = "stockfish-8-armeabi-v7a";
     String assetsEngineProcess = "";
 	String dataEnginesPath = "";
@@ -385,6 +370,6 @@ public class ChessEngineService extends Service
 	boolean isUciEloOption = false;		// supporting UCI strength
 	boolean isUciSkillOption = false;		// supporting UCI strength
 	int uciEloMin = 1200;
-	int uciEloMax = 3000;
-	int uciStrength = 3000;
+	int uciEloMax = 4000;
+	int uciStrength = 4000;
 }

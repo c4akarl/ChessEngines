@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Chess Engines</string>
+    <string name="whatsNew">What\'s new</string>
     <string name="app_name_about">Chess Engines - About</string>
     <string name="app_name_uci">Chess Engines - UCI Options</string>
     <string name="app_name_engines">Chess Engines - Engine List</string>
@@ -48,4 +49,5 @@
     
     <string name="prefTitleLogOn">Log Generating</string>
     <string name="prefPlayingStrength">playing strength</string>
+    <string name="engineProcessNoFeedback">No feedback from the process</string>
 </resources>

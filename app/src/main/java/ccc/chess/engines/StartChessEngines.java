@@ -1,14 +1,14 @@
 package ccc.chess.engines;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
-import java.util.List;
-
+import android.Manifest;
 import android.app.Activity;
-import android.app.ActivityManager;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
-import android.app.ActivityManager.RunningAppProcessInfo;
 import android.content.ActivityNotFoundException;
 import android.content.ComponentName;
 import android.content.Context;
@@ -20,11 +20,13 @@ import android.content.DialogInterface.OnCancelListener;
 import android.content.DialogInterface.OnClickListener;
 import android.content.pm.PackageManager;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
-import android.os.Environment;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.RemoteException;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.view.ContextMenu;
 import android.view.KeyEvent;
 import android.view.Menu;
@@ -33,6 +35,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ContextMenu.ContextMenuInfo;
 import android.view.View.OnTouchListener;
+import android.webkit.WebView;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.util.Log;
@@ -47,6 +50,7 @@ public class StartChessEngines extends Activity implements OnTouchListener
         dataEnginesPath = getApplicationContext().getFilesDir() + "/engines/";
         efm = new EngineFileManager();
         efm.dataEnginesPath = dataEnginesPath;
+		getPermissions();
         getEnginePrefs();
         filePrefs = getSharedPreferences("file", 0);
         getPreferences();
@@ -69,6 +73,25 @@ public class StartChessEngines extends Activity implements OnTouchListener
     	releaseEngineService(true);
     	super.onDestroy();
     }
+	@Override
+	public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults)
+	{
+		switch (requestCode)
+		{
+			case PERMISSIONS_REQUEST_CODE:
+				if (grantResults.length > 0)
+				{
+					for (int i = 0; i < grantResults.length; i++)
+					{
+						if (grantResults[i] == PackageManager.PERMISSION_GRANTED)
+							Log.i(TAG, permissions[i] + " was granted");
+						else
+							Log.i(TAG, permissions[i] + " denied");
+					}
+				}
+				return;
+		}
+	}
 //	MENU		MENU		MENU		MENU		MENU		MENU		MENU		MENU		
     @Override
 	public boolean onKeyUp(int keyCode, KeyEvent event) 
@@ -202,7 +225,7 @@ public class StartChessEngines extends Activity implements OnTouchListener
     {
 		switch (id) 
 		{
-			case FILE_DIALOG:  
+			case FILE_DIALOG:  // install process from external storage
 	        {
 				CharSequence[] items = new String[fileList.size()];
 				if (fileList.size() > 0)
@@ -224,20 +247,16 @@ public class StartChessEngines extends Activity implements OnTouchListener
 				{
 				    public void onClick(DialogInterface dialog, int item) 
 				    {
-//				    	Log.i(TAG, "File selected: " + fileList.get(item));
 				    	if (fileList.get(item).startsWith("<"))
 				    	{
 				    		if (fileList.get(item).equals("< < <"))
 				    		{
-//				    			Log.i(TAG, "directory back: " + efm.currentFilePath);
 				    			engineSearchPath = efm.getParentFile(efm.currentFilePath);
-//				    			Log.i(TAG, "engineSearchPath: " + engineSearchPath);
 				    			getEnginesFromSdcard(engineSearchPath);
 				    		}
 				    		else
 				    		{
 					    		engineSearchPath = efm.currentFilePath + "/" + fileList.get(item).substring(1, fileList.get(item).length() -1);
-//					    		Log.i(TAG, "engineSearchPath: " + engineSearchPath);
 					    		getEnginesFromSdcard(engineSearchPath);
 				    		}
 				    	}
@@ -246,6 +265,8 @@ public class StartChessEngines extends Activity implements OnTouchListener
 				    		boolean writeOk = efm.writeEngineToData(efm.currentFilePath, fileList.get(item), null);
 				        	if (writeOk)
 				        		aboutApp(aboutCounter);
+							else
+								c4aShowDialog(NO_UCI_CHESS_PROCESS);
 				    	}
 				    }
 				});
@@ -345,6 +366,15 @@ public class StartChessEngines extends Activity implements OnTouchListener
 				AlertDialog alert = builder.create(); 
 				return alert;
 			}
+			case NO_UCI_CHESS_PROCESS:
+			{
+				AlertDialog.Builder builder = new AlertDialog.Builder(this);
+				String notFound = "";
+				notFound = getString(R.string.engineProcessNoFeedback);
+				builder.setTitle(R.string.app_name).setMessage(notFound);
+				AlertDialog alert = builder.create();
+				return alert;
+			}
 			case ABOUT_DIALOG: 
 			{
 				AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -369,8 +399,17 @@ public class StartChessEngines extends Activity implements OnTouchListener
 			case WHATS_NEW: 
 			{
 				AlertDialog.Builder builder = new AlertDialog.Builder(this);
-				builder.setTitle(R.string.whatsNew).setMessage(R.string.whatsNew_text);
-				AlertDialog alert = builder.create(); 
+				String title = getString(R.string.whatsNew);
+				WebView wv = new WebView(this);
+				builder.setView(wv);
+				InputStream is = getResources().openRawResource(R.raw.whats_new);
+				String data = readFromStream(is);
+				if (data == null)
+					data = "";
+				try { is.close(); } catch (IOException ignored) {}
+				wv.loadDataWithBaseURL(null, data, "text/html", "utf-8", null);
+				builder.setTitle(title);
+				AlertDialog alert = builder.create();
 				return alert;
 			}
 		}
@@ -380,19 +419,15 @@ public class StartChessEngines extends Activity implements OnTouchListener
 //	ENGINE-FILE(intall, uninstall, select)		ENGINE-FILE(intall, uninstall, select)	
     private void getEnginesFromSdcard(String path) 
 	{
-		Log.i(TAG, "path: " + path);
     	fileArray = efm.getFileArrayFromPath(path);
-// ERROR	v1.0	14.11.2011 02:24:11
     	if (fileArray != null)
     	{
 	    	fileList.clear();
 	    	if (fileArray != null)
 	    	{
-	//    		Log.i(TAG, "Files:");
 	    		fileList.add("< < <");	// first entry: back to previous directory
 	    		for (int i = 0; i < fileArray.length; i++)	
 	        	{
-	//    			Log.i(TAG, fileArray[i]);
 	    			if (efm.fileIsDirectory(fileArray[i]))
 	    			{
 	    				fileList.add("<" + fileArray[i] + ">");
@@ -403,8 +438,6 @@ public class StartChessEngines extends Activity implements OnTouchListener
 	    		c4aShowDialog(FILE_DIALOG);
 	    	}
     	}
-//		else
-//			c4aShowDialog(FILE_DIALOG);
 	}
     private void getEnginesFromData() 
 	{
@@ -412,10 +445,8 @@ public class StartChessEngines extends Activity implements OnTouchListener
     	dataList.clear();
     	if (fileArray != null)
     	{
-//    		Log.i(TAG, "Files:");
-    		for (int i = 0; i < fileArray.length; i++)	
+    		for (int i = 0; i < fileArray.length; i++)
         	{
-//    			Log.i(TAG, fileArray[i]);
     			if (!efm.fileIsDirectory(fileArray[i]))
     				dataList.add(fileArray[i]);
         	}
@@ -444,12 +475,25 @@ public class StartChessEngines extends Activity implements OnTouchListener
 	}
 
     //	HELPERS		HELPERS		HELPERS		HELPERS		HELPERS		HELPERS		HELPERS		HELPERS
+	public void getPermissions()
+	{
+		if (Build.VERSION.SDK_INT >= 23)
+		{
+			String[] permissions = new String[] {Manifest.permission.WRITE_EXTERNAL_STORAGE};
+			ActivityCompat.requestPermissions(this, permissions, PERMISSIONS_REQUEST_CODE);
+		}
+	}
     public void getPreferences() 
 	{
-//    	engineSearchPath = filePrefs.getString("engineSearchPath", efm.getExternalDirectory());
-//    	engineSearchPath = filePrefs.getString("engineSearchPath", Environment.getExternalStorageDirectory().getAbsolutePath());
-    	engineSearchPath = Environment.getExternalStorageDirectory().getAbsolutePath();
-    	aboutCounter = filePrefs.getInt("aboutCounter", 1);
+		String pathExternal = efm.getExternalDirectoryPath();
+		engineSearchPath = filePrefs.getString("engineSearchPath", pathExternal);
+//		Log.i(TAG, "pathExternal: " + pathExternal + ", engineSearchPath: " + engineSearchPath);
+		if (!pathExternal.equals("") & !engineSearchPath.equals(""))
+		{
+			if (!pathExternal.substring(0, 4).equals(engineSearchPath.substring(0, 4)))
+				engineSearchPath = pathExternal;
+		}
+		aboutCounter = filePrefs.getInt("aboutCounter", 1);
 	}
     public void setPreferences() 
 	{
@@ -461,14 +505,13 @@ public class StartChessEngines extends Activity implements OnTouchListener
     private void getEnginePrefs() 
     {
     	enginePrefs = getSharedPreferences("engine", 0);
-//    	isLogOn = enginePrefs.getBoolean("logOn", false);
     	if (enginePrefs.getBoolean("logOn", false))
     		getInfoFromEngineService("SET_LOGFILE_ON");
     	else
     		getInfoFromEngineService("SET_LOGFILE_OFF");
     }
     public void c4aShowDialog(int dialogId)					
-    {	// show dialog (remove and show)
+    {
 		removeDialog(dialogId);
 		showDialog(dialogId);
     }
@@ -482,19 +525,30 @@ public class StartChessEngines extends Activity implements OnTouchListener
         }
     	return engineInData;
     }
-    boolean isNamedProcessRunning(String processName)
-    {
-    	if (processName == null) return false;
-    	ActivityManager manager = (ActivityManager) this.getSystemService(ACTIVITY_SERVICE);
-    	List<RunningAppProcessInfo> processes = manager.getRunningAppProcesses();
-    	for (RunningAppProcessInfo process : processes)
-    	{
-    	    if (processName.equals(process.processName))
-    	        return true;
-    	}
-    	return false;
-    }
-    public Runnable mUpdateEngineIsready = new Runnable() 		
+	public String readFromStream(InputStream is)
+	{
+		String data = "";
+		try
+		{
+			ByteArrayOutputStream byteStream = new ByteArrayOutputStream();
+			byte[] bytes = new byte[4096];
+			int len;
+			while ((len = is.read(bytes)) > 0)
+				byteStream.write(bytes, 0, len);
+			data = new String(byteStream.toByteArray(), "UTF8");
+		}
+		catch (IOException e) {data = "Couldn't load file: manual";}
+		finally
+		{
+			if (is != null)
+			{
+				try {is.close();}
+				catch (IOException e) {data = "Couldn't close file: manual";}
+			}
+		}
+		return data;
+	}
+    public Runnable mUpdateEngineIsready = new Runnable()
 	{	
 	   public void run() 
 	   {
@@ -503,7 +557,6 @@ public class StartChessEngines extends Activity implements OnTouchListener
 				s = "";
     		if (s.equals("readyok") | s.endsWith("readyok"))
     		{
-//	    			Log.i(TAG, "mUpdateEngineIsready, readyok");
     			isReady = true;
     			aboutApp(aboutCounter);
     			handlerEngineIsready.removeCallbacks(mUpdateEngineIsready);
@@ -764,6 +817,7 @@ public class StartChessEngines extends Activity implements OnTouchListener
 	final String APP_EMAIL = "c4akarl@gmail.com";
 	//	DIALOG		DIALOG		DIALOG		DIALOG		DIALOG		DIALOG
 	final int NO_CHESS_ENGINE_DIALOG = 1;
+	final int NO_UCI_CHESS_PROCESS = 11;
 	final int FILE_DIALOG = 2;
 	final int DATA_SELECT_DIALOG = 3;
 	final int DATA_DELETE_DIALOG = 4;
@@ -773,13 +827,12 @@ public class StartChessEngines extends Activity implements OnTouchListener
 	final int WHATS_NEW = 10;
 	
 	//	FILE-ACTION		FILE-ACTION		FILE-ACTION		FILE-ACTION		FILE-ACTION
-	final int FILE_INSTALL = 301;
 	final int DATA_LIST = 310;
 	final int DATA_SELECT = 311;
 	final int DATA_DELETE = 312;
 	int dataAction = DATA_LIST;
-//	subActivity RequestCode
 	private static final int PREFERENCES_REQUEST_CODE = 1;
+	private static final int PERMISSIONS_REQUEST_CODE = 50;
 	IChessEngineService engineService;
 	EngineServiceConnection engineServiceConnection;
 	EngineFileManager efm;
@@ -791,8 +844,6 @@ public class StartChessEngines extends Activity implements OnTouchListener
 	int handlerEngineIsreadyCnt = 0;
 	int handlerEngineUciOptionsCnt = 0;
 	int aboutCounter = 1;
-	boolean isStartApp = true;					
-	boolean stopService = true;	
 	boolean processAlive;
 	String currentProcess = "";
 	String engineProcess = ""; // file name (/data/data ...)
@@ -802,12 +853,9 @@ public class StartChessEngines extends Activity implements OnTouchListener
 	ImageView btnGui = null;
 	ImageView btnMenu = null;
 	TextView tvMain = null;
-	Menu menuE;
 	String menuData = "";
-	ProgressDialog progressDialog = null;
-	
+
 	String engineSearchPath = "";
-//	String engineSearchPath = "/sdcard/chess_engines/";
 	String dataEnginesPath = "";
 	String[] fileArray;
 	ArrayList<String> fileList = new ArrayList<String>();	// file list(sd-card)

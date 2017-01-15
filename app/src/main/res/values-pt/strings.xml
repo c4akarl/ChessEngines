@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Chess Engines</string>
+    <string name="whatsNew">O que há de novo</string>
     <string name="app_name_about">Chess Engines - Sobre</string>
     <string name="app_name_uci">Chess Engines - UCI Opções</string>
     <string name="app_name_engines">Chess Engines - Lista de motor</string>
@@ -48,4 +49,5 @@
     
     <string name="prefTitleLogOn">Entrar Gerando</string>
     <string name="prefPlayingStrength">jogando força</string>
+    <string name="engineProcessNoFeedback">Sem feedback do Processo</string>
 </resources>
