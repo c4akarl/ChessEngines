@@ -1,24 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-	package="ccc.chess.engines" >
-	<uses-sdk android:minSdkVersion="9"/>
+    package="ccc.chess.engines">
 	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <application android:icon="@drawable/icon" android:label="@string/app_name" android:allowBackup="true">
-        <activity android:name=".StartChessEngines"
-                  android:label="@string/app_name">
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="Chess Engines OEX"
+        android:theme="@android:style/Theme.Translucent.NoTitleBar" >
+        <activity
+            android:name="ccc.chess.engines.MainActivity"
+            android:label="Chess Engines OEX" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-                <category android:name="ccc.chess.ENGINE" />
+                <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
+            <intent-filter>
+                <action android:name="intent.chess.provider.ENGINE" />
+            </intent-filter>
+            <meta-data
+                android:name="chess.provider.engine.authority"
+                android:value="ccc.chess.engines.MyEngineProvider" />
         </activity>
-		<activity android:name="ChessEnginePreferences" android:label="@string/preferencesTitle" /> 
-	    <service 	android:name="ChessEngineService" android:label="@string/service_name" 
-	    			android:process=":chess_engines" android:enabled="true" android:exported="true" >
-	        <intent-filter>
-	            <action android:name="ccc.chess.engines.IChessEngineService" />
-	            <category android:name="android.intent.category.DEFAULT" />
-	        </intent-filter>
-	    </service>
+
+        <provider
+            android:name="ccc.chess.engines.MyEngineProvider"
+            android:authorities="ccc.chess.engines.MyEngineProvider"
+            android:exported="true" />
     </application>
+
 </manifest>
