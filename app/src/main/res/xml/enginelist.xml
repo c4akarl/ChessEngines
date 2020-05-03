@@ -31,4 +31,9 @@
         filename="libandscacs.so"
         target="armeabi-v7a|arm64-v8a|x86|x86_64" />
 
+    <engine
+        name="Stockfish 20200409"
+        filename="libstockfish.so"
+        target="armeabi-v7a|arm64-v8a|x86|x86_64" />
+
 </enginelist>
