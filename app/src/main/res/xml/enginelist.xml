@@ -2,12 +2,12 @@
 <enginelist>
 
     <engine
-        name="Rodent IV V0.26-debug"
+        name="Rodent IV 0.26"
         filename="librodent4.so"
         target="armeabi-v7a|arm64-v8a|x86|x86_64" />
 
     <engine
-        name="OpenTal V1.1"
+        name="OpenTal 1.1"
         filename="libopental.so"
         target="armeabi-v7a|arm64-v8a|x86|x86_64" />
 
