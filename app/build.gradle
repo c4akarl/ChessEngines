@@ -5,10 +5,10 @@ android {
 
     defaultConfig {
         applicationId "ccc.chess.engines"
-        minSdkVersion 14
+        minSdkVersion 19
         targetSdkVersion 29
-        versionCode 14
-        versionName "2.0"
+        versionCode 15
+        versionName "2.1"
     }
 
     buildTypes {
@@ -16,4 +16,8 @@ android {
             minifyEnabled false
         }
     }
+}
+
+dependencies {
+    implementation 'androidx.core:core:1.3.1'
 }
