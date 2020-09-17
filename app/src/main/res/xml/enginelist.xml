@@ -2,7 +2,7 @@
 <enginelist>
 
     <engine
-        name="Rodent IV 0.31"
+        name="Rodent IV 0.32"
         filename="librodent4.so"
         target="armeabi-v7a|arm64-v8a|x86|x86_64" />
 
