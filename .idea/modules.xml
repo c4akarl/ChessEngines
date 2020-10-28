@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/ChessEngines.iml" filepath="$PROJECT_DIR$/.idea/modules/ChessEngines.iml" group="ChessEngines" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/app.iml" group="ChessEngines/app" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/ChessEngineSupportLibrary/chessEngineSupportLibrary.iml" filepath="$PROJECT_DIR$/.idea/modules/ChessEngineSupportLibrary/chessEngineSupportLibrary.iml" group="ChessEngines/chessEngineSupportLibrary" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/ChessEngines.iml" filepath="$PROJECT_DIR$/.idea/modules/ChessEngines.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/ChessEngines.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/ChessEngines.app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/ChessEngineSupportLibrary/ChessEngines.chessEngineSupportLibrary.iml" filepath="$PROJECT_DIR$/.idea/modules/ChessEngineSupportLibrary/ChessEngines.chessEngineSupportLibrary.iml" />
     </modules>
   </component>
 </project>
