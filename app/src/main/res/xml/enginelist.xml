@@ -9,7 +9,7 @@
     <engine
         name="Leela Chess Zero 0.26.3"
         filename="liblc0.so"
-        target="armeabi-v7a|arm64-v8a|x86|x86_64" />
+        target="armeabi-v7a|arm64-v8a" />
 
     <engine
         name="OpenTal 1.1"
