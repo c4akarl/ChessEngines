@@ -9,6 +9,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import android.util.Log;
 import android.webkit.WebView;
+import android.widget.TextView;
 import android.widget.Toast;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -24,6 +25,8 @@ public class MainActivity extends Activity {
 		setContentView(R.layout.main_layout);
 		webView = findViewById(R.id.info);
 		webView.loadUrl(engineInfo);
+		engineTitle = findViewById(R.id.engineTitle);
+		engineTitle.setText("Chess Engines  " + BuildConfig.VERSION_NAME);
 
 		getPermissions();
 
@@ -242,6 +245,8 @@ public class MainActivity extends Activity {
 	//karl TableBases ???
 	String PATH_FILES_GTB = "";
 	String PATH_FILES_RTB = "";
+
+	TextView engineTitle = null;
 
 	private boolean copyErrorB;
 	boolean skipExistingB = true;
