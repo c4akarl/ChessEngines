@@ -58,8 +58,8 @@ public class MainActivity extends Activity {
 
 	private void fromAssetsToExternalStorage(String assetsPath, String storagePath) {
 
-//		Log.i(TAG, "fromAssetsToExternalStorage(), assetsPath: " + assetsPath);
-//		Log.i(TAG, "fromAssetsToExternalStorage(), storagePath: " + storagePath);
+		Log.i(TAG, "fromAssetsToExternalStorage(), assetsPath: " + assetsPath);
+		Log.i(TAG, "fromAssetsToExternalStorage(), storagePath: " + storagePath);
 
 		File dir = new File(storagePath);
 		if (!dir.exists()) {
