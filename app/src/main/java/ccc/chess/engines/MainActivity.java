@@ -28,16 +28,20 @@ public class MainActivity extends Activity {
 		engineTitle = findViewById(R.id.engineTitle);
 		engineTitle.setText("Chess Engines  " + BuildConfig.VERSION_NAME);
 
-		getPermissions();
+//		getPermissions();
 
 		skipExistingB = false;
-		if (storageAvailable()) {
-			if (setPathValues()) {
 
-				copyAssets();
-
-			}
-		}
+//		if (storageAvailable()) {
+//			if (setPathValues()) {
+//
+//				copyAssets();
+//
+//			}
+//		}
+		
+		setPathValues();
+		copyAssets();
 
 	}
 
@@ -58,14 +62,16 @@ public class MainActivity extends Activity {
 
 	private void fromAssetsToExternalStorage(String assetsPath, String storagePath) {
 
-		Log.i(TAG, "fromAssetsToExternalStorage(), assetsPath: " + assetsPath);
-		Log.i(TAG, "fromAssetsToExternalStorage(), storagePath: " + storagePath);
+//		Log.i(TAG, "fromAssetsToExternalStorage(), assetsPath: " + assetsPath);
+//		Log.i(TAG, "fromAssetsToExternalStorage(), storagePath: " + storagePath);
 
 		File dir = new File(storagePath);
 		if (!dir.exists()) {
 			if (!dir.mkdirs()) {
 				Toast.makeText(getApplicationContext(), "fromAssetsToExternalStorage(), Error mkdirs, storagePath: " + storagePath, Toast.LENGTH_LONG).show();
-				Log.i(TAG, "fromAssetsToExternalStorage(), Error mkdirs, storagePath: " + storagePath);
+
+//				Log.i(TAG, "fromAssetsToExternalStorage(), Error mkdirs, storagePath: " + storagePath);
+
 				return;
 			}
 		}
@@ -91,7 +97,7 @@ public class MainActivity extends Activity {
 
 		} catch (IOException ex) {
 
-			Log.i(TAG, "fromAssetsToExternalStorage(), I/O Exception", ex);
+//			Log.i(TAG, "fromAssetsToExternalStorage(), I/O Exception", ex);
 
 		}
 	}
@@ -131,7 +137,7 @@ public class MainActivity extends Activity {
 				Toast.makeText(getApplicationContext(),"Written " + toFile, Toast.LENGTH_SHORT).show();
 		} catch (Exception e) {
 
-			Log.i(TAG, e.getMessage());
+//			Log.i(TAG, e.getMessage());
 
 			copyErrorB = true;
 			throw e;
@@ -139,60 +145,60 @@ public class MainActivity extends Activity {
 	}
 
 	//karl for getExternalFilesDir ?
-	public void getPermissions()
-	{
-
-//		Log.i(TAG, "1 getPermissions(), storagePermissions: " + storagePermission);
-
-		if (storagePermission == PermissionState.UNKNOWN) {
-			String extStorage = Manifest.permission.WRITE_EXTERNAL_STORAGE;
-			if (ContextCompat.checkSelfPermission(this, extStorage) ==
-					PackageManager.PERMISSION_GRANTED) {
-				storagePermission = PermissionState.GRANTED;
-
-				Log.i(TAG, "getPermissions(), storagePermissions: " + storagePermission);
-
-			} else {
-				storagePermission = PermissionState.REQUESTED;
-
-//				Log.i(TAG, "3 getPermissions(), storagePermissions: " + storagePermission);
-
-				ActivityCompat.requestPermissions(this, new String[]{extStorage}, PERMISSIONS_REQUEST_CODE);
-			}
-		}
-
-//		Log.i(TAG, "getPermissions(), storagePermissions: " + storagePermission);
-
-	}
-
-	@Override
-	public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults)
-	{
-		switch (requestCode)
-		{
-			case PERMISSIONS_REQUEST_CODE:
-				if (grantResults.length > 0)
-				{
-					for (int i = 0; i < grantResults.length; i++)
-					{
-						if (grantResults[i] != PackageManager.PERMISSION_GRANTED)
-							Log.i(TAG, permissions[i] + " denied");
-
-						if (permissions[i].equals(Manifest.permission.WRITE_EXTERNAL_STORAGE) && grantResults[i] == PackageManager.PERMISSION_GRANTED)
-							storagePermission = PermissionState.GRANTED;
-					}
-				}
-				if (storageAvailable()) {
-					if (setPathValues()) {
-						copyAssets();
-					}
-				}
-				break;
-		}
-	}
+//	public void getPermissions()
+//	{
+//
+////		Log.i(TAG, "1 getPermissions(), storagePermissions: " + storagePermission);
+//
+//		if (storagePermission == PermissionState.UNKNOWN) {
+//			String extStorage = Manifest.permission.WRITE_EXTERNAL_STORAGE;
+//			if (ContextCompat.checkSelfPermission(this, extStorage) ==
+//					PackageManager.PERMISSION_GRANTED) {
+//				storagePermission = PermissionState.GRANTED;
+//
+//				Log.i(TAG, "getPermissions(), storagePermissions: " + storagePermission);
+//
+//			} else {
+//				storagePermission = PermissionState.REQUESTED;
+//
+////				Log.i(TAG, "3 getPermissions(), storagePermissions: " + storagePermission);
+//
+//				ActivityCompat.requestPermissions(this, new String[]{extStorage}, PERMISSIONS_REQUEST_CODE);
+//			}
+//		}
+//
+////		Log.i(TAG, "getPermissions(), storagePermissions: " + storagePermission);
+//
+//	}
+//
+//	@Override
+//	public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults)
+//	{
+//		switch (requestCode)
+//		{
+//			case PERMISSIONS_REQUEST_CODE:
+//				if (grantResults.length > 0)
+//				{
+//					for (int i = 0; i < grantResults.length; i++)
+//					{
+//						if (grantResults[i] != PackageManager.PERMISSION_GRANTED)
+//							Log.i(TAG, permissions[i] + " denied");
+//
+//						if (permissions[i].equals(Manifest.permission.WRITE_EXTERNAL_STORAGE) && grantResults[i] == PackageManager.PERMISSION_GRANTED)
+//							storagePermission = PermissionState.GRANTED;
+//					}
+//				}
+//				if (storageAvailable()) {
+//					if (setPathValues()) {
+//						copyAssets();
+//					}
+//				}
+//				break;
+//		}
+//	}
 
 	//karl return ???
-	private Boolean setPathValues() {
+	private void setPathValues() {
 
 		PATH_FILES = String.valueOf(getExternalFilesDir(null));	// 		/storage/emulated/0/Android/data/ccc.chess.engines/files
 		PATH_FILES_BOOKS = PATH_FILES + "/books";
@@ -200,9 +206,9 @@ public class MainActivity extends Activity {
 		PATH_FILES_GTB = PATH_FILES + "/gtb";
 		PATH_FILES_RTB = PATH_FILES + "/rtb";
 
-		Log.i(TAG, "setPathValues(), PATH_FILES_BOOKS: " + PATH_FILES_BOOKS);
+//		Log.i(TAG, "setPathValues(), PATH_FILES_BOOKS: " + PATH_FILES_BOOKS);
 
-		return true;
+//		return true;
 	}
 
 	//karl not needed for getExternalFilesDir() !?
@@ -225,12 +231,12 @@ public class MainActivity extends Activity {
 //				| Intent.FLAG_GRANT_PREFIX_URI_PERMISSION);
 //		startActivityForResult(intent, REQUEST_CODE_OPEN_DOCUMENT_TREE);
 //	}
+//
+//	private boolean storageAvailable() {
+//		return storagePermission == PermissionState.GRANTED;
+//	}
 
-	private boolean storageAvailable() {
-		return storagePermission == PermissionState.GRANTED;
-	}
-
-	final String TAG = "MainActivity";
+//	final String TAG = "MainActivity";
 	WebView webView;
 	final String engineInfo = "file:///android_res/raw/engine_info";
 
@@ -250,13 +256,13 @@ public class MainActivity extends Activity {
 
 	private boolean copyErrorB;
 	boolean skipExistingB = true;
-	private static final int PERMISSIONS_REQUEST_CODE = 50;
-	private enum PermissionState {
-		UNKNOWN,
-		REQUESTED,
-		GRANTED,
-//		DENIED
-	}
-	private PermissionState storagePermission = PermissionState.UNKNOWN;
+//	private static final int PERMISSIONS_REQUEST_CODE = 50;
+//	private enum PermissionState {
+//		UNKNOWN,
+//		REQUESTED,
+//		GRANTED,
+////		DENIED
+//	}
+//	private PermissionState storagePermission = PermissionState.UNKNOWN;
 
 }
