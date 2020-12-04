@@ -32,14 +32,6 @@ public class MainActivity extends Activity {
 
 		skipExistingB = false;
 
-//		if (storageAvailable()) {
-//			if (setPathValues()) {
-//
-//				copyAssets();
-//
-//			}
-//		}
-		
 		setPathValues();
 		copyAssets();
 
